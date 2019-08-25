@@ -1,7 +1,7 @@
 = HTMLUI
 *HTMLUI* is a framework that can be used to create GUI applications using HTML and Ruby.
 
-Here is [a really simple example](https://github.com/timkoi/htmlui/tree/master/lib) that demostrates the basics of using HTMLUI.
+Here is [a really simple example](https://github.com/timkoi/htmlui/tree/master/example) that demostrates the basics of using HTMLUI.
 
 == Installation
 HTMLUI is still considered experimental and, as such, no stable releases are available (yet). To use HTMLUI, you'll have to build it from sources, which is pretty easy.
