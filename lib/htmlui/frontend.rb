@@ -32,4 +32,9 @@ class HTMLUI
 		end
 		return $htmlui_qmlcontroller_instance.valueof(id)
 	end
+	
+	def alert(msg)
+		_prerender_ex()
+		return $htmlui_qmlcontroller_instance.alert(msg.gsub('"', '\"'))
+	end
 end

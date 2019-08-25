@@ -1,0 +1,44 @@
+= HTMLUI
+*HTMLUI* is a framework that can be used to create GUI applications using HTML and Ruby.
+
+Here is [a really simple example](https://github.com/timkoi/htmlui/tree/master/lib) that demostrates the basics of using HTMLUI.
+
+== Installation
+HTMLUI is still considered experimental and, as such, no stable releases are available (yet). To use HTMLUI, you'll have to build it from sources, which is pretty easy.
+
+You will need:
+[squares]
+- Ruby 2.0 or later
+- Qt 5.9 or later
+- `qml` Ruby gem
+
+If you are on macOS and you have MacPorts installed, all the dependencies can be installed using these commands:
+[source,bash]
+----
+$ sudo port install qt5-qtwebengine qt5-qtbase
+$ sudo sh -c "PREFIX=\"/opt/local/libexec/qt5/bin:$PREFIX\" gem install -N qml"
+----
+
+Now build the binary gem for `htmlui` and install it: 
+[source,bash]
+----
+$ gem build htmlui.gemspec
+$ sudo gem install --local htmlui-1.0.0.gem
+----
+
+== Status
+=== What works?
+[squares]
+- Rendering HTML pages using QML WebEngineView
+- Calling Ruby code from HTML
+- Creating alerts from Ruby
+
+=== What does not work or is not implemented (yet)?
+[squares]
+- Creating input boxes from Ruby
+- Loading internal/external JavaScript or CSS
+- Retreiving information about HTML elements from Ruby
+- Calling JavaScript from HTML
+
+== License
+MIT License

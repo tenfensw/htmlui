@@ -11,7 +11,7 @@ module HTMLUILogic
 			include QML::Access
 			register_to_qml
 			
-			property(:content) { 'about:blank' }
+			property(:content) { 'http://example.com' }
 			property(:windowConnected) { 0 }
 			
 			def render
@@ -47,6 +47,13 @@ module HTMLUILogic
 				result = @wvref.method_missing(:runJavaScript, 'document.getElementById(\'' + id.to_s.gsub('\'', "\\'") + '\').value')
 				#result = result.method_missing(:toString)
 				return result
+			end
+			
+			def alert(string)
+				if not @wvref then
+					return false
+				end
+				@wvref.method_missing(:runJavaScript, "alert(\"#{string}\")")
 			end
 			
 			def jsquit
