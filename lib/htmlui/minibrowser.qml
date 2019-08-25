@@ -17,8 +17,10 @@ Window {
         url: uiProv.content
 	id: wv
 	onNavigationRequested: function(url) { 
-		uiProv.decide(url.url.toString(), this); 
-		if (url.url.toString().startsWith('rb:'))
+		let urlp = url.url.toString();
+		if (!(urlp.endsWith('.css') || urlp.endsWith('.js') || urlp.endsWith('.map')))
+			uiProv.decide(urlp, this); 
+		if (urlp.startsWith('rb:'))
 			url.action = WebEngineNavigationRequest.IgnoreRequest; 
 	}
 	onJavaScriptDialogRequested: function(rq) { rq.accepted = false; }

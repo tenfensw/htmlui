@@ -31,6 +31,7 @@ $ sudo gem install --local htmlui-1.0.0.gem
 [squares]
 - Rendering HTML pages using QML WebEngineView
 - Calling Ruby code from HTML
+- Calling JavaScript from HTML
 - Creating alerts from Ruby
 
 === What does not work or is not implemented (yet)?
@@ -38,7 +39,6 @@ $ sudo gem install --local htmlui-1.0.0.gem
 - Creating input boxes from Ruby
 - Loading internal/external JavaScript or CSS
 - Retreiving information about HTML elements from Ruby
-- Calling JavaScript from HTML
 
 == License
 MIT License
