@@ -1,4 +1,5 @@
 require 'qml'
+require 'json'
 
 $htmlui_qmlcontroller_instance = nil
 $htmlui_qmlcontroller_ui = ''
@@ -13,18 +14,32 @@ module HTMLUILogic
 			
 			property(:content) { 'http://example.com' }
 			property(:windowConnected) { 0 }
+			property(:fdialogFileName) { '' }
+			signal :openFileDialog, []
+			
+			def fd_open
+				openFileDialog.emit
+			end
+			
+			on_changed :fdialogFileName do
+				@objects_wp['selected_file'] = fdialogFileName.clone
+			end
 			
 			def render
 				@locked = false
 				if not @wvref then
 					return
 				end
+				@objects_wp = {}
 				@wvref.method_missing(:loadHtml, $htmlui_qmlcontroller_ui)
 			end
 			
 			def decide(url, wvref)
 				if not $htmlui_qmlcontroller_instance then
 					$htmlui_qmlcontroller_instance = self
+				end
+				if url.downcase.start_with? 'rb:' then
+					@locked = false
 				end
 				if @locked then
 					@locked = false
@@ -40,13 +55,20 @@ module HTMLUILogic
 				@locked = true
 			end
 			
+			def cache_objects(arg)
+				@objects_wp = arg.to_hash
+				@objects_wp['selected_file'] = fdialogFileName.clone
+			end
+			
 			def valueof(id)
-				if not @wvref then
+				if not (@wvref && @objects_wp.keys.include?(id)) then
 					return nil
 				end
-				result = @wvref.method_missing(:runJavaScript, 'document.getElementById(\'' + id.to_s.gsub('\'', "\\'") + '\').value')
-				#result = result.method_missing(:toString)
-				return result
+				return @objects_wp[id].to_s
+			end
+			
+			def qmlputs(string)
+				puts string
 			end
 			
 			def alert(string)
@@ -54,6 +76,33 @@ module HTMLUILogic
 					return false
 				end
 				@wvref.method_missing(:runJavaScript, "alert(\"#{string}\")")
+				return true
+			end
+			
+			def jsdecl(varn, varv)
+				if not @wvref then
+					return false
+				end
+				if String === varv then
+					varv = '"' + varv.gsub('"', '\"') + '"'
+				elsif Hash === varv then
+					varv = varv.clone.to_json
+				end
+				cmd = "#{varn} = #{varv}"
+				@wvref.method_missing(:runJavaScript, cmd)
+				return true
+			end
+			
+			def prompt(string)
+				if not @wvref then
+					return nil
+				end
+				result = nil
+				@wvref.method_missing(:runJavaScript, "prompt(\"#{string}\")", proc { |v| result = v || '' })
+				while result == nil do
+					sleep 0.02
+				end
+				return result
 			end
 			
 			def jsquit

@@ -33,12 +33,13 @@ $ sudo gem install --local htmlui-1.0.0.gem
 - Calling Ruby code from HTML
 - Calling JavaScript from HTML
 - Creating alerts from Ruby
+- Loading internal/external JavaScript or CSS
+- Retreiving information about HTML elements from Ruby
+- Calling file selection dialog from Ruby
 
 === What does not work or is not implemented (yet)?
 [squares]
 - Creating input boxes from Ruby
-- Loading internal/external JavaScript or CSS
-- Retreiving information about HTML elements from Ruby
 
 == License
 MIT License

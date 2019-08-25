@@ -1,7 +1,22 @@
-  <div>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link ref="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" />
+</head>
+<body>
+  <div class="container">
     <h1>Welcome</h1>
 	<p>As you can see, this is a HTML page that is rendered by HTMLUI and, as such, can call Ruby code.</p>
 	<p>How do you do that? Well, for example, if you have a Ruby function <code>foo</code> that you want to call when clicking on a link, you just put <code>rb:foo</code> inside the <code>href</code> tag of the link. And the next time you click it, <code>foo</code> will be called.</p>
-	<p>This example does actually have a function called <code>sayhello</code> and it will be called if you click the button below:</p>
-	<a href="rb:sayhello" class="ui-btn">Greet me!</a>
+	<p>This example does actually have a function called <code>sayhello</code> and it will be called and will display an alert if you enter your name and then click the button below:</p>
+	<p>Your name: <input type="text" id="name" /></p>
+	<a href="rb:sayhello" class="btn btn-primary">Greet me!</a>
   </div>
+</body>
+</html>
+
+

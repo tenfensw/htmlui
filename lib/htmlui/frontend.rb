@@ -37,4 +37,20 @@ class HTMLUI
 		_prerender_ex()
 		return $htmlui_qmlcontroller_instance.alert(msg.gsub('"', '\"'))
 	end
+
+	def prompt(msg)
+		_prerender_ex()
+		thread = Thread.new { $htmlui_qmlcontroller_instance.prompt(msg.gsub('"', '\"')) }
+		return thread
+	end
+	
+	def env(varn, varv)
+		_prerender_ex()
+		return $htmlui_qmlcontroller_instance.jsdecl(varn, varv)
+	end
+	
+	def select_file
+		_prerender_ex()
+		$htmlui_qmlcontroller_instance.fd_open
+	end
 end
