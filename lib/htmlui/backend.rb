@@ -11,7 +11,7 @@ module HTMLUILogic
 			include QML::Access
 			register_to_qml
 			
-			property(:content) { 'http://ya.ru' }
+			property(:content) { 'about:blank' }
 			property(:windowConnected) { 0 }
 			
 			def render
