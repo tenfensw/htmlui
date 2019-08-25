@@ -4,6 +4,7 @@ require 'json'
 $htmlui_qmlcontroller_instance = nil
 $htmlui_qmlcontroller_ui = ''
 
+# @!visibility private
 module HTMLUILogic
 	module HTMLUIController
 		VERSION = '1.0'
@@ -113,6 +114,7 @@ module HTMLUILogic
 	end
 end
 
+# @!visibility private
 def start_htmlui_browser
 	QML.run do |app| 
 		app.load_path File.absolute_path(File.dirname(__FILE__)) + '/minibrowser.qml'

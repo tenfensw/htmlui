@@ -1,4 +1,5 @@
 = HTMLUI
+
 *HTMLUI* is a framework that can be used to create GUI applications using HTML and Ruby.
 
 Here is [a really simple example](https://github.com/timkoi/htmlui/tree/master/example) that demostrates the basics of using HTMLUI.
