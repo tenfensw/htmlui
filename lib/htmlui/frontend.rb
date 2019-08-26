@@ -76,4 +76,26 @@ class HTMLUI
 		_prerender_ex()
 		$htmlui_qmlcontroller_instance.fd_open
 	end
+	
+	# Changes the value of the HTML element with ID ``id`` to ``value``.
+	# @param id [String] The ID of the HTML element.
+	# @param value [String] The stringified value.
+	# @return [String] ``nil`` on fail or the modified ``value``
+	def change_value(id, value)
+		_prerender_ex()
+		return $htmlui_qmlcontroller_instance.valmod(id, value)
+	end
+	
+	# Evaluates the specified JavaScript code.
+	# @param code [String] The code itself.
+	def javascript(code)
+		_prerender_ex()
+		return $htmlui_qmlcontroller_instance.jsrun(code.to_s)
+	end
+	
+	# Shorthand for ``javascript(code)``
+	# @param code [String] JavaScript code to run.
+	def js(code)
+		return self.javascript(code)
+	end
 end

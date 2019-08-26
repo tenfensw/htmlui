@@ -94,6 +94,27 @@ module HTMLUILogic
 				return true
 			end
 			
+			def valmod(id, val)
+				if not @wvref then
+					return nil
+				end
+				prependc = '"'
+				if not String === val then
+					prependc = ''
+				end
+				val = prependc + val.to_s.gsub('"', '\"') + prependc
+				@wvref.method_missing(:runJavaScript, "document.getElementById(\"#{id}\").value = #{val}")
+				return val
+			end
+			
+			def jsrun(string)
+				if not @wvref then
+					return false
+				end
+				@wvref.method_missing(:runJavaScript, string.gsub('"', '\"'))
+				return true
+			end
+			
 			def prompt(string)
 				if not @wvref then
 					return nil
