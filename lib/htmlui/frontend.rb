@@ -86,6 +86,15 @@ class HTMLUI
 		return $htmlui_qmlcontroller_instance.valmod(id, value)
 	end
 	
+	# Same as change_value()
+	# @param id [String] The ID of the HTML element.
+	# @param value [String] The stringified value.
+	# @return [String] ``nil`` on fail or the modified ``value``	
+	def []= (id, value)
+		_prerender_ex()
+		return $htmlui_qmlcontroller_instance.valmod(id, value)
+	end
+	
 	# Evaluates the specified JavaScript code.
 	# @param code [String] The code itself.
 	def javascript(code)
@@ -97,5 +106,25 @@ class HTMLUI
 	# @param code [String] JavaScript code to run.
 	def js(code)
 		return self.javascript(code)
+	end
+	
+	# Hides a HTML element with ID ``id``.
+	# @param id [String] The ID of the element to hide.
+	def hide(el)
+		_prerender_ex()
+		if not String === el then
+			raise "The element ID must be a string."
+		end
+		return self.javascript("document.getElementById('#{el}').style.visibility = 'hidden';")
+	end
+
+	# Shows a HTML element with ID ``id``.
+	# @param id [String] The ID of the element to hide.
+	def show(el)
+		_prerender_ex()
+		if not String === el then
+			raise "The element ID must be a string."
+		end
+		return self.javascript("document.getElementById('#{el}').style.visibility = 'visible';")
 	end
 end
